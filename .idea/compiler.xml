@@ -29,5 +29,6 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="app" options="-parameters" />
     </option>
+    </annotationProcessing>
   </component>
 </project>
