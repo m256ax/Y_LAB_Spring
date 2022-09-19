@@ -1,10 +1,12 @@
 package com.edu.ulab.app.entity;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
+@ToString
 public class Book {
 
     private Long id;

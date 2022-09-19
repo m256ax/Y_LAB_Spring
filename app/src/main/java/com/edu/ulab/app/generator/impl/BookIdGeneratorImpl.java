@@ -3,10 +3,10 @@ package com.edu.ulab.app.generator.impl;
 import com.edu.ulab.app.generator.IdGenerator;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("BookId")
 public class BookIdGeneratorImpl implements IdGenerator {
 
-    private final Long[] number = new Long[]{1L};
+    private final Long[] number = new Long[]{0L};
 
     @Override
     public boolean hasNext() {

@@ -2,9 +2,11 @@ package com.edu.ulab.app.storage.impl;
 
 import com.edu.ulab.app.entity.User;
 import com.edu.ulab.app.storage.UserStorage;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class UserStorageImpl implements UserStorage {
 
     private final Map<Long, User> userMap = new HashMap<>();
@@ -15,18 +17,13 @@ public class UserStorageImpl implements UserStorage {
     }
 
     @Override
-    public Optional<User> findById(Long id) {
-        return Optional.of(userMap.get(id));
+    public Optional<User> findById(Long userId)  {
+        return Optional.ofNullable(userMap.get(userId));
     }
 
     @Override
-    public List<User> findAll() {
-        return new ArrayList<>(userMap.values());
-    }
-
-    @Override
-    public void delete(Long id) {
-        userMap.remove(id);
+    public void delete(Long userId) {
+        userMap.remove(userId);
     }
 
     @Override
@@ -35,4 +32,8 @@ public class UserStorageImpl implements UserStorage {
     }
 
 
+    @Override
+    public boolean containUser (User user) {
+        return userMap.containsValue(user);
+    }
 }
