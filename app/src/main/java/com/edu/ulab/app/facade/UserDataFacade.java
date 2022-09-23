@@ -64,7 +64,6 @@ public class UserDataFacade {
     }
 
     public UserBookResponse updateUserWithBooks(Long userId, UserBookRequest userBookRequest) {
-        log.info("Got userId: {}", userId);
         log.info("Got userBookRequest{}", userBookRequest);
         UserDto existUser = userService.getUserById(userId);
         log.info("Got user by id: {}", existUser);

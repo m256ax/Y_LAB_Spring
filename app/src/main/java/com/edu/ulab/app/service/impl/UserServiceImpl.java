@@ -43,9 +43,8 @@ public class UserServiceImpl implements UserService {
         }
 
         userDto.setId(idGenerator.next());
-        log.info("Generated id for user {}", userDto.getId());
         newUser.setId(userDto.getId());
-        log.info("User set id: {}", newUser);
+        log.info("User set id: {}", newUser.getId());
         userStorage.save(newUser);
         log.info("User saved to storage: {}", newUser);
         return userDto;
@@ -64,9 +63,7 @@ public class UserServiceImpl implements UserService {
 
         User existUser = optionalUser.get();
         log.info("User is present in storage {}", existUser);
-        existUser.setFullName(userDto.getFullName());
-        existUser.setTitle(userDto.getTitle());
-        existUser.setAge(userDto.getAge());
+        existUser = userMapper.userDtoToUser(userDto);
         log.info("Updated user : {}", existUser);
         userStorage.update(existUser);
         log.info("Updated user saved to storage");

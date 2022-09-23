@@ -30,27 +30,38 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto createBook(BookDto bookDto) {
+        log.info("Got bookDto for create: {}", bookDto);
+
         bookDto.setId(idGenerator.next());
 
         Book newBook = bookMapper.BookDtoToBook(bookDto);
+        log.info("Book mapped from bookDto without id{}", newBook);
+
+        newBook.setId(bookDto.getId());
+        log.info("Set id to book {}", newBook.getId());
 
         bookStorage.save(newBook);
+        log.info("Book saved go storage: {}", newBook);
 
         return bookDto;
     }
 
     @Override
-    public void deleteBookById(Long id) {
+    public void deleteBookById(Long bookId) {
+        log.info("Got bookId for delete: {}", bookId);
 
-        if (bookStorage.findById(id).isEmpty()) {
+        if (bookStorage.findById(bookId).isEmpty()) {
+            log.info("This bookId is absent in storage");
             throw new NotFoundException("This book is absent");
         }
 
-        bookStorage.delete(id);
+        bookStorage.delete(bookId);
+        log.info("User with userId: {} is deleted from storage", bookId);
     }
 
     @Override
     public List<Long> getByUserId(Long userId) {
+        log.info("Got userId for find book: {}", userId);
         return bookStorage.findByUserId(userId);
     }
 }

@@ -4,7 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ceb7f10d-6d8f-4322-b855-2f3a2f7c64ae" name="Changes" comment="first try" />
+    <list default="true" id="ceb7f10d-6d8f-4322-b855-2f3a2f7c64ae" name="Changes" comment=".gitignore">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/edu/ulab/app/facade/UserDataFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/edu/ulab/app/facade/UserDataFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/edu/ulab/app/mapper/BookMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/edu/ulab/app/mapper/BookMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/edu/ulab/app/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/edu/ulab/app/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/edu/ulab/app/service/impl/BookServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/edu/ulab/app/service/impl/BookServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/edu/ulab/app/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/edu/ulab/app/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/AppApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/AppApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/dto/BookDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/dto/BookDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/dto/UserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/dto/UserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/entity/Book$BookBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/entity/Book$BookBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/entity/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/entity/Book.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/entity/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/entity/User$UserBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/exception/NotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/exception/NotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/facade/UserDataFacade.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/facade/UserDataFacade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/mapper/BookMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/mapper/BookMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/mapper/BookMapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/mapper/BookMapperImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/mapper/UserMapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/mapper/UserMapperImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/service/BookService.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/service/BookService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/service/impl/BookServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/service/impl/BookServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/storage/BookStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/storage/BookStorage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/storage/UserStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/storage/UserStorage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/storage/impl/BookStorageImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/storage/impl/BookStorageImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/storage/impl/UserStorageImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/storage/impl/UserStorageImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/filter/HttpRequestFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/filter/HttpRequestFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/handler/ControllerExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/handler/ControllerExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/handler/ExceptionHandlerUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/handler/ExceptionHandlerUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/request/BookRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/request/BookRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/request/UserBookRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/request/UserBookRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/request/UserRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/request/UserRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/response/BaseWebResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/response/BaseWebResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/response/UserBookResponse$UserBookResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/response/UserBookResponse$UserBookResponseBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/response/UserBookResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/response/UserBookResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/response/UserResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/target/classes/com/edu/ulab/app/web/response/UserResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/generated-sources/annotations/com/edu/ulab/app/mapper/BookMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/target/generated-sources/annotations/com/edu/ulab/app/mapper/UserMapperImpl.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,22 +89,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelOrder2": "2",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RequestMappingsPanelWidth2": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/work/Desktop/Y-LAB/Y_LAB_Spring/app/src/main/java/com/edu/ulab/app/entity",
-    "nodejs_package_manager_path": "npm",
-    "spring.configuration.checksum": "d2a57dc1d883fd21fb9951699df71cc7"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelOrder2&quot;: &quot;2&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth2&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/work/Desktop/Y-LAB/Y_LAB_Spring/app/src/main/java/com/edu/ulab/app/entity&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;d2a57dc1d883fd21fb9951699df71cc7&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.edu.ulab.app.generator.impl" />
@@ -76,19 +119,24 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Y_LAB_Spring" />
+    <configuration name="AppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.edu.ulab.app.AppApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.edu.ulab.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Y_LAB_Spring" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.AppApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -102,6 +150,7 @@
       <workItem from="1663330172897" duration="10000" />
       <workItem from="1663553162552" duration="26822000" />
       <workItem from="1663588844561" duration="144000" />
+      <workItem from="1663927438038" duration="2360000" />
     </task>
     <task id="LOCAL-00001" summary="first try">
       <created>1663588662647</created>
