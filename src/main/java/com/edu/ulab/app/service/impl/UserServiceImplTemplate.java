@@ -1,10 +1,14 @@
 package com.edu.ulab.app.service.impl;
 
 import com.edu.ulab.app.dto.UserDto;
+import com.edu.ulab.app.entity.Person;
 import com.edu.ulab.app.exception.NotFoundException;
+import com.edu.ulab.app.mapper.UserMapper;
 import com.edu.ulab.app.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -13,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.PreparedStatement;
 
+import java.util.List;
 import java.util.Objects;
 
 @Slf4j
@@ -25,12 +30,17 @@ public class UserServiceImplTemplate implements UserService {
 
     final String SELECT_SQL = "SELECT * FROM PERSON WHERE id = ?";
 
+    final String ALL_SELECT_SQL = "SELECT * FROM PERSON";
+
     final String DELETE_SQL = "DELETE FROM PERSON WHERE id = ?";
 
     private final JdbcTemplate jdbcTemplate;
 
-    public UserServiceImplTemplate(JdbcTemplate jdbcTemplate) {
+    private final UserMapper userMapper;
+
+    public UserServiceImplTemplate(JdbcTemplate jdbcTemplate, UserMapper userMapper) {
         this.jdbcTemplate = jdbcTemplate;
+        this.userMapper = userMapper;
     }
 
     private static final RowMapper<UserDto> userDtoMapper = (row, rowNumber) -> {
@@ -103,5 +113,19 @@ public class UserServiceImplTemplate implements UserService {
             throw new NotFoundException("User is absent");
         }
         log.info("User with id: {} deleted", id);
+    }
+
+    @Override
+    public List<Long> getAllUser() {
+        try {
+            List<Person> people = jdbcTemplate.query(
+                    ALL_SELECT_SQL,
+                    new BeanPropertyRowMapper(Person.class));
+
+            return userMapper.createListId(people);
+        } catch (EmptyResultDataAccessException e) {
+            log.info("User is absent");
+            throw new NotFoundException("User is absent");
+        }
     }
 }

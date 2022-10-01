@@ -50,9 +50,10 @@ public class BookServiceImpl implements BookService {
         existBook = bookMapper.bookDtoToBook(bookDto);
         log.info("Mapped book: {}", existBook);
 
-        bookRepository.save(existBook);
+        Book savedBook = bookRepository.save(existBook);
         log.info("Save updated book to storage: {}", existBook);
-        return bookDto;
+
+        return bookMapper.bookToBookDto(savedBook);
     }
 
     @Override
@@ -102,6 +103,6 @@ public class BookServiceImpl implements BookService {
             throw new NotFoundException("This book is absent");
         }
 
-        return optional.get().stream().map(Book::getId).collect(Collectors.toList());
+        return bookMapper.createListId(optional);
     }
 }

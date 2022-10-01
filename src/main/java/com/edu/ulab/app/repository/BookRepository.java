@@ -16,6 +16,6 @@ public interface BookRepository extends CrudRepository<Book, Long> {
     Optional<Book> findByIdForUpdate(long id);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("select b from Book b where b.userId = :userId")
+    @Query("select b from Book b where b.personId = :userId")
     Optional<List<Book>> findByUserId(long userId);
 }

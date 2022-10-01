@@ -7,6 +7,10 @@ import com.edu.ulab.app.web.response.BookResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Mapper(componentModel = "spring")
 public interface BookMapper {
 
@@ -20,4 +24,8 @@ public interface BookMapper {
 
     @Mapping(target="id", source="id")
     BookResponse bookDtoToBookResponse(BookDto bookDto);
+
+    default List<Long> createListId(Optional<List<Book>> optional) {
+        return optional.get().stream().map(Book::getId).collect(Collectors.toList());
+    }
 }

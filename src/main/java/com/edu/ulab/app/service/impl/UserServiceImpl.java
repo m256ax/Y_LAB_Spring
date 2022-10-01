@@ -9,6 +9,8 @@ import com.edu.ulab.app.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -46,10 +48,10 @@ public class UserServiceImpl implements UserService {
         log.info("User is present in storage {}", existPerson);
         existPerson = userMapper.userDtoToPerson(userDto);
         log.info("Updated user : {}", existPerson);
-        userRepository.save(existPerson);
+        Person savedPerson = userRepository.save(existPerson);
         log.info("Updated user saved to storage");
 
-        return userMapper.personToUserDto(existPerson);
+        return userMapper.personToUserDto(savedPerson);
     }
 
     @Override
@@ -89,5 +91,11 @@ public class UserServiceImpl implements UserService {
 
         userRepository.delete(optionalPerson.get());
         log.info("User with userId: {} is deleted from storage", userId);
+    }
+
+    @Override
+    public List<Long> getAllUser() {
+        List<Person> people = (List<Person>) userRepository.findAll();
+        return userMapper.createListId(people);
     }
 }

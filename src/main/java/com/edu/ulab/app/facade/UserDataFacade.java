@@ -2,13 +2,10 @@ package com.edu.ulab.app.facade;
 
 import com.edu.ulab.app.dto.BookDto;
 import com.edu.ulab.app.dto.UserDto;
-import com.edu.ulab.app.entity.Person;
 import com.edu.ulab.app.mapper.BookMapper;
 import com.edu.ulab.app.mapper.UserMapper;
 
-import com.edu.ulab.app.service.impl.BookServiceImpl;
 import com.edu.ulab.app.service.impl.BookServiceImplTemplate;
-import com.edu.ulab.app.service.impl.UserServiceImpl;
 import com.edu.ulab.app.service.impl.UserServiceImplTemplate;
 import com.edu.ulab.app.web.request.BookRequest;
 import com.edu.ulab.app.web.request.UserBookRequest;
@@ -17,9 +14,7 @@ import com.edu.ulab.app.web.response.UserBookResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Slf4j
 @Component
@@ -84,11 +79,10 @@ public class UserDataFacade {
         userService.updateUser(existUser);
         log.info("Exist user saved to storage: {}", existUser);
 
-
         bookService.getBookByUserId(userId).forEach(bookService::deleteBookById);
         log.info("Delete all book in the storage with userId: {}", userId);
 
-        List<Long> bookIdList = saveBook(userBookRequest, existUser);
+        List<Long> bookIdList = bookService.getBookByUserId(userId);
         log.info("book list: {}", bookIdList);
 
         return UserBookResponse.builder()

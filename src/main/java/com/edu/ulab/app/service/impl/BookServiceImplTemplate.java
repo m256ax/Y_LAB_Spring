@@ -21,15 +21,15 @@ import java.util.*;
 @Service
 public class BookServiceImplTemplate implements BookService {
 
-    final String INSERT_SQL = "INSERT INTO BOOK(TITLE, AUTHOR, PAGE_COUNT, USER_ID) VALUES (?,?,?,?)";
+    final String INSERT_SQL = "INSERT INTO BOOK (TITLE, AUTHOR, PAGE_COUNT, PERSON_ID) VALUES (?,?,?,?)";
 
-    final String UPDATE_SQL = "UPDATE BOOK SET USER_ID = ?, TITLE = ?, AUTHOR = ?, PAGE_COUNT = ? WHERE ID = ?";
+    final String UPDATE_SQL = "UPDATE BOOK SET PERSON_ID = ?, TITLE = ?, AUTHOR = ?, PAGE_COUNT = ? WHERE ID = ?";
 
     final String SELECT_SQL = "SELECT * FROM BOOK WHERE ID = ?";
 
     final String DELETE_SQL = "DELETE FROM BOOK WHERE ID = ?";
 
-    final String SELECT_SQL_BOOK_BY_USER_ID = "SELECT id FROM BOOK WHERE USER_ID = ?";
+    final String SELECT_SQL_BOOK_BY_USER_ID = "SELECT id FROM BOOK WHERE PERSON_ID = ?";
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -41,7 +41,7 @@ public class BookServiceImplTemplate implements BookService {
         Integer page = row.getObject("PAGE_COUNT", Integer.class);
         return BookDto.builder()
                 .id(row.getLong("id"))
-                .userId(row.getLong("USER_ID"))
+                .userId(row.getLong("PERSON_ID"))
                 .title(row.getString("TITLE"))
                 .author(row.getString("AUTHOR"))
                 .pageCount(page)
