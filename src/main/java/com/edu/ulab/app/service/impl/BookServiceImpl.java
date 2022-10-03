@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -96,7 +95,7 @@ public class BookServiceImpl implements BookService {
     public List<Long> getBookByUserId(Long userId) {
         log.info("Got userId for find book: {}", userId);
 
-        Optional<List<Book>> optional = bookRepository.findByUserId(userId);
+        Optional<List<Book>> optional = bookRepository.findByPersonId(userId);
 
         if (optional.isEmpty()) {
             log.info("Book with userid: {} is absent in storage", userId);

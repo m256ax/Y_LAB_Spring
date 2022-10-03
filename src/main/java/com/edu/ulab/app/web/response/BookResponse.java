@@ -11,7 +11,7 @@ import org.mapstruct.Mapper;
 public class BookResponse {
 
     private Long id;
-    private Long userId;
+    private Long personId;
     private String title;
     private String author;
     private long pageCount;

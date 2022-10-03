@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: addColumn
+      author: m256ax
+      changes:
+        - addColumn:
+            schemaName: ulab_edu
+            tableName: person
+            columns:
+              - column:
+                  name: count
+                  type: integer

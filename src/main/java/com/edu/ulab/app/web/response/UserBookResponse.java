@@ -8,6 +8,6 @@ import java.util.List;
 @Data
 @Builder
 public class UserBookResponse {
-    private Long userId;
+    private Long personId;
     private List<Long> booksIdList;
 }

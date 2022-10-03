@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class BookDto {
     private Long id;
-    private Long userId;
+    private Long personId;
     private String title;
     private String author;
     private long pageCount;

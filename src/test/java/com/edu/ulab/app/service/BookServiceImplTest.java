@@ -1,7 +1,6 @@
 package com.edu.ulab.app.service;
 
 import com.edu.ulab.app.dto.BookDto;
-import com.edu.ulab.app.dto.UserDto;
 import com.edu.ulab.app.entity.Book;
 import com.edu.ulab.app.entity.Person;
 import com.edu.ulab.app.exception.NotFoundException;
@@ -50,14 +49,14 @@ public class BookServiceImplTest {
         person.setId(1L);
 
         BookDto bookDto = new BookDto();
-        bookDto.setUserId(1L);
+        bookDto.setPersonId(1L);
         bookDto.setAuthor("test author");
         bookDto.setTitle("test title");
         bookDto.setPageCount(1000);
 
         BookDto result = new BookDto();
         result.setId(1L);
-        result.setUserId(1L);
+        result.setPersonId(1L);
         result.setAuthor("test author");
         result.setTitle("test title");
         result.setPageCount(1000);
@@ -95,14 +94,14 @@ public class BookServiceImplTest {
         person.setId(1L);
 
         BookDto bookDto = new BookDto();
-        bookDto.setUserId(1L);
+        bookDto.setPersonId(1L);
         bookDto.setAuthor("new author");
         bookDto.setTitle("new title");
         bookDto.setPageCount(2222);
 
         BookDto result = new BookDto();
         result.setId(1L);
-        result.setUserId(1L);
+        result.setPersonId(1L);
         result.setAuthor("new author");
         result.setTitle("new title");
         result.setPageCount(2222);
@@ -136,7 +135,7 @@ public class BookServiceImplTest {
         //then
         BookDto bookDtoResult = bookService.updateBook(bookDto);
         assertEquals(1L, bookDtoResult.getId());
-        assertEquals(1L, bookDtoResult.getUserId());
+        assertEquals(1L, bookDtoResult.getPersonId());
         assertEquals("new title", bookDtoResult.getTitle());
         assertEquals("new author", bookDtoResult.getAuthor());
         assertEquals(2222, bookDtoResult.getPageCount());
@@ -152,7 +151,7 @@ public class BookServiceImplTest {
 
         BookDto result = new BookDto();
         result.setId(1L);
-        result.setUserId(1L);
+        result.setPersonId(1L);
         result.setTitle("test title");
         result.setAuthor("test author");
         result.setPageCount(1000);
@@ -171,7 +170,7 @@ public class BookServiceImplTest {
         //then
         BookDto bookDtoResult = bookService.getBookById(1L);
         assertEquals(1L, bookDtoResult.getId());
-        assertEquals(1L, bookDtoResult.getUserId());
+        assertEquals(1L, bookDtoResult.getPersonId());
         assertEquals("test title", bookDtoResult.getTitle());
         assertEquals("test author", bookDtoResult.getAuthor());
         assertEquals(1000, bookDtoResult.getPageCount());
@@ -196,7 +195,7 @@ public class BookServiceImplTest {
 
         //when
 
-        when(bookRepository.findByUserId(1L)).thenReturn(Optional.of(Collections.singletonList(existBook)));
+        when(bookRepository.findByPersonId(1L)).thenReturn(Optional.of(Collections.singletonList(existBook)));
         when(bookMapper.createListId(Optional.of(Collections.singletonList(existBook)))).thenReturn(List.of(1L));
 
         //then

@@ -41,7 +41,7 @@ public class BookServiceImplTemplate implements BookService {
         Integer page = row.getObject("PAGE_COUNT", Integer.class);
         return BookDto.builder()
                 .id(row.getLong("id"))
-                .userId(row.getLong("PERSON_ID"))
+                .personId(row.getLong("PERSON_ID"))
                 .title(row.getString("TITLE"))
                 .author(row.getString("AUTHOR"))
                 .pageCount(page)
@@ -59,7 +59,7 @@ public class BookServiceImplTemplate implements BookService {
                         ps.setString(1, bookDto.getTitle());
                         ps.setString(2, bookDto.getAuthor());
                         ps.setLong(3, bookDto.getPageCount());
-                        ps.setLong(4, bookDto.getUserId());
+                        ps.setLong(4, bookDto.getPersonId());
                         log.info("Mapped prepareStatement: {}", ps);
                         return ps;
                     }
@@ -77,7 +77,7 @@ public class BookServiceImplTemplate implements BookService {
         log.info("Got bookDto: {} for update", bookDto);
         try {
             jdbcTemplate.update(UPDATE_SQL,
-                    bookDto.getUserId(),
+                    bookDto.getPersonId(),
                     bookDto.getTitle(),
                     bookDto.getAuthor(),
                     bookDto.getPageCount(),
