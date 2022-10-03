@@ -4,6 +4,7 @@ import com.edu.ulab.app.dto.BookDto;
 import com.edu.ulab.app.dto.UserDto;
 import com.edu.ulab.app.entity.Book;
 import com.edu.ulab.app.entity.Person;
+import com.edu.ulab.app.exception.NotFoundException;
 import com.edu.ulab.app.mapper.UserMapper;
 import com.edu.ulab.app.repository.UserRepository;
 import com.edu.ulab.app.service.impl.UserServiceImpl;
@@ -16,14 +17,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * Тестирование функционала {@link com.edu.ulab.app.service.impl.UserServiceImpl}.
@@ -51,12 +53,12 @@ public class UserServiceImplTest {
         userDto.setFullName("test name");
         userDto.setTitle("test title");
 
-        Person person  = new Person();
+        Person person = new Person();
         person.setFullName("test name");
         person.setAge(11);
         person.setTitle("test title");
 
-        Person savedPerson  = new Person();
+        Person savedPerson = new Person();
         savedPerson.setId(1L);
         savedPerson.setFullName("test name");
         savedPerson.setAge(11);
@@ -92,19 +94,19 @@ public class UserServiceImplTest {
         userDto.setFullName("new name");
         userDto.setTitle("new title");
 
-        Person updatedPerson  = new Person();
+        Person updatedPerson = new Person();
         userDto.setId(1L);
         updatedPerson.setFullName("new name");
         updatedPerson.setAge(46);
         updatedPerson.setTitle("new title");
 
-        Person existPerson  = new Person();
+        Person existPerson = new Person();
         existPerson.setId(1L);
         existPerson.setFullName("test name");
         existPerson.setAge(11);
         existPerson.setTitle("test title");
 
-        Person savedPerson  = new Person();
+        Person savedPerson = new Person();
         savedPerson.setId(1L);
         savedPerson.setFullName("new name");
         savedPerson.setAge(46);
@@ -138,7 +140,7 @@ public class UserServiceImplTest {
         UserDto userDto = new UserDto();
         userDto.setId(1L);
 
-        Person existPerson  = new Person();
+        Person existPerson = new Person();
         existPerson.setId(1L);
         existPerson.setFullName("test name");
         existPerson.setTitle("test title");
@@ -173,7 +175,7 @@ public class UserServiceImplTest {
         List<Long> testResult = new ArrayList<>();
         testResult.add(1L);
 
-        Person existPerson  = new Person();
+        Person existPerson = new Person();
         existPerson.setId(1L);
         existPerson.setFullName("test name");
         existPerson.setTitle("test title");
@@ -199,7 +201,7 @@ public class UserServiceImplTest {
         UserDto userDto = new UserDto();
         userDto.setId(1L);
 
-        Person existPerson  = new Person();
+        Person existPerson = new Person();
         existPerson.setId(1L);
         existPerson.setFullName("test name");
         existPerson.setTitle("test title");
@@ -212,11 +214,34 @@ public class UserServiceImplTest {
 
         //then
 
-       verify(userRepository).delete(existPerson);
+        verify(userRepository).delete(existPerson);
     }
 
-
     // * failed
+    @Test
+    @DisplayName("Ошибка при создание пользователя. Должно пройти успешно.")
+    void failToSavePerson_Test() {
+        //given
+
+        UserDto userDto = new UserDto();
+        userDto.setAge(11);
+        userDto.setFullName("test name");
+        userDto.setTitle("test title");
+
+        Person person = new Person();
+        person.setFullName("test name");
+        person.setAge(11);
+        person.setTitle("test title");
+
+        //when
+        doThrow(NotFoundException.class).when(userRepository).save(same(person));
+
+        //then
+
+        assertThatThrownBy(() -> userService.createUser(userDto))
+                .isInstanceOf(SQLIntegrityConstraintViolationException.class);
+    }
+
     //         doThrow(dataInvalidException).when(testRepository)
     //                .save(same(test));
     // example failed

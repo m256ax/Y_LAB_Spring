@@ -40,8 +40,6 @@ public class BookRepositoryTest {
     })
     void saveBook_thenAssertDmlCount() {
         //Given
-        reset();
-
         Person person = new Person();
         person.setAge(111);
         person.setTitle("reader");
@@ -77,8 +75,6 @@ public class BookRepositoryTest {
     })
     void updateBook_thenAssertDmlCount() {
         //Given
-        reset();
-
         Person person = new Person();
         person.setAge(111);
         person.setTitle("reader");
@@ -127,8 +123,6 @@ public class BookRepositoryTest {
     })
     void getBook_thenAssertDmlCount() {
         //Given
-        reset();
-
         Person person = new Person();
         person.setAge(111);
         person.setTitle("reader");
@@ -168,8 +162,6 @@ public class BookRepositoryTest {
     })
     void getAllBook_thenAssertDmlCount() {
         //Given
-        reset();
-
         Person person = new Person();
         person.setAge(111);
         person.setTitle("writer");
@@ -207,8 +199,6 @@ public class BookRepositoryTest {
     })
     void deleteBook_thenAssertDmlCount() {
         //Given
-        reset();
-
         Person person = new Person();
         person.setAge(111);
         person.setTitle("writer");
@@ -226,10 +216,9 @@ public class BookRepositoryTest {
 
         //When
         bookRepository.delete(book);
-        List<Book> result = (List<Book>) bookRepository.findAll();
 
         //Then
-        assertThat(result.size()).isEqualTo(2);
+        assertThat(userRepository.count()).isEqualTo(2L);
         assertSelectCount(1);
         assertInsertCount(2);
         assertUpdateCount(0);

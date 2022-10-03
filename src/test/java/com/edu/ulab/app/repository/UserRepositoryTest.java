@@ -37,19 +37,19 @@ public class UserRepositoryTest {
     })
     void insertPerson_thenAssertDmlCount() {
         //Given
-        reset();
         Person person = new Person();
         person.setAge(111);
-        person.setTitle("reader");
+        person.setTitle("writer");
         person.setFullName("Test Test");
 
         //When
         Person result = userRepository.save(person);
 
         //Then
+        assertThat(userRepository.count()).isEqualTo(2);
         assertThat(result.getAge()).isEqualTo(111);
-        assertSelectCount(0);
-        assertInsertCount(0);
+        assertSelectCount(1);
+        assertInsertCount(1);
         assertUpdateCount(0);
         assertDeleteCount(0);
     }
@@ -65,26 +65,26 @@ public class UserRepositoryTest {
     })
     void updatePerson_thenAssertDmlCount() {
         //Given
-        reset();
         Person person = new Person();
         person.setAge(111);
-        person.setTitle("reader");
-        person.setFullName("Test Test");
+        person.setTitle("writer");
+        person.setFullName("new Test");
 
         //When
         Person existPerson = userRepository.findById(1001L).get();
         existPerson.setFullName(person.getFullName());
         existPerson.setTitle(person.getTitle());
         existPerson.setAge(person.getAge());
-        Person result = userRepository.save(person);
+        Person result = userRepository.save(existPerson);
 
         //Then
+        assertThat(userRepository.count()).isEqualTo(1);
         assertThat(result.getAge()).isEqualTo(111);
-        assertThat(result.getFullName()).isEqualTo("Test Test");
-        assertThat(result.getTitle()).isEqualTo("reader");
-        assertSelectCount(1);
+        assertThat(result.getFullName()).isEqualTo("new Test");
+        assertThat(result.getTitle()).isEqualTo("writer");
+        assertSelectCount(2);
         assertInsertCount(0);
-        assertUpdateCount(0);
+        assertUpdateCount(1);
         assertDeleteCount(0);
     }
 
@@ -99,7 +99,6 @@ public class UserRepositoryTest {
     })
     void getPerson_thenAssertDmlCount() {
         //Given
-        reset();
         Person person = new Person();
         person.setAge(55);
         person.setTitle("reader");
@@ -109,10 +108,11 @@ public class UserRepositoryTest {
         Person result = userRepository.findById(1001L).get();
 
         //Then
+        assertThat(userRepository.count()).isEqualTo(1);
         assertThat(result.getAge()).isEqualTo(55);
         assertThat(result.getFullName()).isEqualTo("default user");
         assertThat(result.getTitle()).isEqualTo("reader");
-        assertSelectCount(1);
+        assertSelectCount(2);
         assertInsertCount(0);
         assertUpdateCount(0);
         assertDeleteCount(0);
@@ -129,7 +129,6 @@ public class UserRepositoryTest {
     })
     void getAllPerson_thenAssertDmlCount() {
         //Given
-        reset();
         Person person = new Person();
         person.setAge(55);
         person.setTitle("writer");
@@ -141,8 +140,9 @@ public class UserRepositoryTest {
         List<Person> users = (List<Person>) userRepository.findAll();
 
         //Then
+        assertThat(userRepository.count()).isEqualTo(2);
         assertThat(users.size()).isEqualTo(2);
-        assertSelectCount(2);
+        assertSelectCount(3);
         assertInsertCount(1);
         assertUpdateCount(0);
         assertDeleteCount(0);
@@ -159,23 +159,22 @@ public class UserRepositoryTest {
     })
     void deletePerson_thenAssertDmlCount() {
         //Given
-        reset();
         Person person = new Person();
-        person.setId(2222L);
         person.setAge(222);
         person.setTitle("writer");
         person.setFullName("new user");
 
-        userRepository.save(person);
+        Person savedPerson = userRepository.save(person);
 
         //When
-        userRepository.delete(person);
+        userRepository.delete(savedPerson);
 
         //Then
-        assertSelectCount(2);
-        assertInsertCount(0);
+        assertThat(userRepository.count()).isEqualTo(1);
+        assertSelectCount(1);
+        assertInsertCount(1);
         assertUpdateCount(0);
-        assertDeleteCount(0);
+        assertDeleteCount(1);
     }
 
     // * failed
