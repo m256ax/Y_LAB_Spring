@@ -1,8 +1,6 @@
 package com.edu.ulab.app.service;
 
-import com.edu.ulab.app.dto.BookDto;
 import com.edu.ulab.app.dto.UserDto;
-import com.edu.ulab.app.entity.Book;
 import com.edu.ulab.app.entity.Person;
 import com.edu.ulab.app.exception.NotFoundException;
 import com.edu.ulab.app.mapper.UserMapper;
@@ -13,19 +11,18 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Тестирование функционала {@link com.edu.ulab.app.service.impl.UserServiceImpl}.
@@ -219,33 +216,48 @@ public class UserServiceImplTest {
 
     // * failed
     @Test
-    @DisplayName("Ошибка при создание пользователя. Должно пройти успешно.")
-    void failToSavePerson_Test() {
+    @DisplayName("Ошибка при получении пользователя. Должно не пройти успешно.")
+    void failToGetPerson_Test() {
         //given
 
         UserDto userDto = new UserDto();
-        userDto.setAge(11);
-        userDto.setFullName("test name");
-        userDto.setTitle("test title");
-
-        Person person = new Person();
-        person.setFullName("test name");
-        person.setAge(11);
-        person.setTitle("test title");
+        userDto.setId(5L);
 
         //when
-        doThrow(NotFoundException.class).when(userRepository).save(same(person));
+        Throwable exception = assertThrows(NotFoundException.class, () -> userService.getUserById(userDto.getId()));
 
         //then
-
-        assertThatThrownBy(() -> userService.createUser(userDto))
-                .isInstanceOf(SQLIntegrityConstraintViolationException.class);
+        assertEquals("User is absent", exception.getMessage());
     }
 
-    //         doThrow(dataInvalidException).when(testRepository)
-    //                .save(same(test));
-    // example failed
-    //  assertThatThrownBy(() -> testeService.createTest(testRequest))
-    //                .isInstanceOf(DataInvalidException.class)
-    //                .hasMessage("Invalid data set");
+    @Test
+    @DisplayName("Ошибка при обновлении пользователя. Должно не пройти успешно.")
+    void failToUpdatePerson_Test() {
+        //given
+
+        UserDto userDto = new UserDto();
+        userDto.setId(5L);
+
+        //when
+        Throwable exception = assertThrows(NotFoundException.class, () -> userService.updateUser(userDto));
+
+        //then
+        assertEquals("User is absent", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Ошибка при удалении пользователя. Должно не пройти успешно.")
+    void failToDeletePerson_Test() {
+        //given
+
+        UserDto userDto = new UserDto();
+        userDto.setId(5L);
+
+        //when
+        Throwable exception = assertThrows(NotFoundException.class, () -> userService.deleteUserById(userDto.getId()));
+
+        //then
+        assertEquals("User is absent", exception.getMessage());
+    }
+
 }

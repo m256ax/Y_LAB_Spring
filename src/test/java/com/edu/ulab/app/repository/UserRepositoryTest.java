@@ -7,13 +7,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.io.IOException;
 import java.util.List;
 
 import static com.vladmihalcea.sql.SQLStatementCountValidator.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.same;
+import static org.mockito.Mockito.doThrow;
 
 /**
  * Тесты репозитория {@link UserRepository}.
@@ -28,7 +34,7 @@ public class UserRepositoryTest {
         SQLStatementCountValidator.reset();
     }
 
-    @DisplayName("Сохранить юзера. Число select должно равняться 1")
+    @DisplayName("Сохранить юзера. Число insert должно равняться 1")
     @Test
     @Rollback
     @Sql({"classpath:sql/1_clear_schema.sql",
@@ -56,7 +62,7 @@ public class UserRepositoryTest {
 
     // update
 
-    @DisplayName("Обновить юзера. Число select должно равняться 1")
+    @DisplayName("Обновить юзера. Число update должно равняться 1")
     @Test
     @Rollback
     @Sql({"classpath:sql/1_clear_schema.sql",
@@ -90,7 +96,7 @@ public class UserRepositoryTest {
 
     // get
 
-    @DisplayName("Получить юзера. Число select должно равняться 1")
+    @DisplayName("Получить юзера. Число select должно равняться 2")
     @Test
     @Rollback
     @Sql({"classpath:sql/1_clear_schema.sql",
@@ -120,7 +126,7 @@ public class UserRepositoryTest {
 
     // get all
 
-    @DisplayName("Получить всех юзеров. Число select должно равняться 1")
+    @DisplayName("Получить всех юзеров. Число select должно равняться 3")
     @Test
     @Rollback
     @Sql({"classpath:sql/1_clear_schema.sql",
@@ -150,7 +156,7 @@ public class UserRepositoryTest {
 
     // delete
 
-    @DisplayName("Удалить юзера. Число select должно равняться 1")
+    @DisplayName("Удалить юзера. Число delete должно равняться 1")
     @Test
     @Rollback
     @Sql({"classpath:sql/1_clear_schema.sql",
@@ -178,4 +184,36 @@ public class UserRepositoryTest {
     }
 
     // * failed
+    @DisplayName("Ошибка при создании юзера.")
+    @Test
+    @Rollback
+    @Sql({"classpath:sql/1_clear_schema.sql",
+            "classpath:sql/2_insert_person_data.sql",
+            "classpath:sql/3_insert_book_data.sql"
+    })
+    void failSavePerson_thenAssertDmlCount() {
+        assertThrows(InvalidDataAccessApiUsageException.class, () -> userRepository.save(null), "IO error");
+    }
+
+    @DisplayName("Ошибка при удалении юзера.")
+    @Test
+    @Rollback
+    @Sql({"classpath:sql/1_clear_schema.sql",
+            "classpath:sql/2_insert_person_data.sql",
+            "classpath:sql/3_insert_book_data.sql"
+    })
+    void failDeletePerson_thenAssertDmlCount() {
+        assertThrows(InvalidDataAccessApiUsageException.class, () -> userRepository.delete(null), "IO error");
+    }
+
+    @DisplayName("Ошибка при получении юзера.")
+    @Test
+    @Rollback
+    @Sql({"classpath:sql/1_clear_schema.sql",
+            "classpath:sql/2_insert_person_data.sql",
+            "classpath:sql/3_insert_book_data.sql"
+    })
+    void failUpdatePerson_thenAssertDmlCount() {
+        assertThrows(InvalidDataAccessApiUsageException.class, () -> userRepository.findById(null), "IO error");
+    }
 }

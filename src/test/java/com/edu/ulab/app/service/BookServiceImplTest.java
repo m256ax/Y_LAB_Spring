@@ -1,8 +1,10 @@
 package com.edu.ulab.app.service;
 
 import com.edu.ulab.app.dto.BookDto;
+import com.edu.ulab.app.dto.UserDto;
 import com.edu.ulab.app.entity.Book;
 import com.edu.ulab.app.entity.Person;
+import com.edu.ulab.app.exception.NotFoundException;
 import com.edu.ulab.app.mapper.BookMapper;
 import com.edu.ulab.app.repository.BookRepository;
 import com.edu.ulab.app.service.impl.BookServiceImpl;
@@ -20,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -82,7 +85,6 @@ public class BookServiceImplTest {
         BookDto bookDtoResult = bookService.createBook(bookDto);
         assertEquals(1L, bookDtoResult.getId());
     }
-
 
     // update
     @Test
@@ -226,5 +228,48 @@ public class BookServiceImplTest {
     }
 
     // * failed
+    @Test
+    @DisplayName("Ошибка при получении книги. Должно не пройти успешно.")
+    void failToGetPerson_Test() {
+        //given
 
+        Book book = new Book();
+        book.setId(5L);
+
+        //when
+        Throwable exception = assertThrows(NotFoundException.class, () -> bookService.getBookById(book.getId()));
+
+        //then
+        assertEquals("This book is absent", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Ошибка при обновлении книги. Должно не пройти успешно.")
+    void failToUpdatePerson_Test() {
+        //given
+
+        BookDto bookDto = new BookDto();
+        bookDto.setId(5L);
+
+        //when
+        Throwable exception = assertThrows(NotFoundException.class, () -> bookService.updateBook(bookDto));
+
+        //then
+        assertEquals("This book is absent", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Ошибка при удалении книги. Должно не пройти успешно.")
+    void failToDeletePerson_Test() {
+        //given
+
+        BookDto bookDto = new BookDto();
+        bookDto.setId(5L);
+
+        //when
+        Throwable exception = assertThrows(NotFoundException.class, () -> bookService.deleteBookById(bookDto.getId()));
+
+        //then
+        assertEquals("This book is absent", exception.getMessage());
+    }
 }
